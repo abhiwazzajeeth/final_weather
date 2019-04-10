@@ -7,7 +7,6 @@ from rest_framework import status
 from rest_framework import generics
 from rest_framework import viewsets, permissions
 from datetime import timedelta, datetime
-from dateutil.relativedelta import relativedelta
 import random
 
 

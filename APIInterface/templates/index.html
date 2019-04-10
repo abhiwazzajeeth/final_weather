@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Weather Forecast</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form>
+        <h1>Weather Forecast</h1>
+        <input id="date" type="text" placeholder="Enter Date" />
+        <button type="submit" id="button"/>Load</button>
+        <br>
+        <br>
+        <div id="dates">
+          
+        </div>
+    </form>
+    <script >
+      $(document).ready(function () {
+        $('#button').on('click', function () {
+          var $dates = $('#dates');
+          var date = $('#date').val();
+          table = {};
+          $.ajax({
+            type: 'GET',
+            url: 'http://52.15.219.211/weatherapi/forecast/'+date+'/',
+            success: function (dates) {
+                $('#dates').html(JSON.stringify(dates));
+                table += "<table style='width:50%'><tr><th>DATE</th><th>TMAX</th><th>TMIN</th></tr>";
+                for (i = 0; i < 7; i++) 
+                {
+                    table += "<tr><td>" + dates.result[i].DATE + "</td><td>" + dates.result[i].TMAX + "</td><td>" + dates.result[i].TMIN + "</td></tr>";
+                }
+                table += "</table>";
+                document.getElementById("dates").innerHTML = table
+                console.log(dates.result[0]);
+            }
+
+        });
+    });
+});
+
+
+    </script>
+</body>
+
+</html>

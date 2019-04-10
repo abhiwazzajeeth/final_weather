@@ -8,4 +8,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('weatherapi/', include('weatherapi.urls')),
     path('swagger/', schema_view),
+    path('', include('APIInterface.urls')),
 ]
